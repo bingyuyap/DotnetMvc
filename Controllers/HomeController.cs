@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using DotnetMvc.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DotnetMvc.Controllers
 {
@@ -17,7 +18,7 @@ namespace DotnetMvc.Controllers
         {
             _logger = logger;
         }
-
+        
         public IActionResult Index()
         {
             return View();
