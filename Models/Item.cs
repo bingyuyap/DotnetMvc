@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DotnetMvc.Models
@@ -12,5 +13,7 @@ namespace DotnetMvc.Models
         // Foreign Key Reference to Restaurant Object
         public Guid RestaurantId { get; set; }
         public Restaurant Restaurant { get; set; }
+        
+        public ICollection<Order> Orders { get; set; }
     }
 }
