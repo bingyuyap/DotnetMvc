@@ -9,5 +9,7 @@ namespace DotnetMvc.Models
         public Guid Id { get; set; }
         
         public ICollection<Item> Items { get; set; }
+        
+        public OrderItem OrderItem { get; set; }
     }
 }
