@@ -30,8 +30,6 @@ namespace DotnetMvc.Data
                 .WithMany(r => r.Items)
                 .HasForeignKey(i => i.RestaurantId)
                 .OnDelete(DeleteBehavior.Cascade);
-            
-            
         }
     }
 }
