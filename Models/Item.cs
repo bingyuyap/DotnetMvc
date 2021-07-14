@@ -14,8 +14,6 @@ namespace DotnetMvc.Models
         public Guid RestaurantId { get; set; }
         public Restaurant Restaurant { get; set; }
         
-        public ICollection<Order> Orders { get; set; }
-        
-        public OrderItem OrderItem { get; set; }
+        public ICollection<OrderItem> OrderItems { get; set; }
     }
 }

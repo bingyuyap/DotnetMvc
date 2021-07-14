@@ -31,9 +31,14 @@ namespace DotnetMvc.Data
                 .HasForeignKey(i => i.RestaurantId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            modelBuilder.Entity<Order>()
-                .HasMany(o => o.Items)
-                .WithMany(i => i.Orders);
+            modelBuilder.Entity<OrderItem>()
+                .HasOne(oi => oi.Order)
+                .WithMany(o => o.OrderItems);
+
+            modelBuilder.Entity<OrderItem>()
+                .HasOne(oi => oi.Item)
+                .WithMany(i => i.OrderItems);
+                
         }
         
         public override int SaveChanges()
