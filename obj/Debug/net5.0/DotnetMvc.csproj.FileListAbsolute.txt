@@ -187,3 +187,8 @@
 /Users/bingyuyap/github/DotnetMvc/obj/Debug/net5.0/Razor/Views/Restaurants/Details.cshtml.g.cs
 /Users/bingyuyap/github/DotnetMvc/obj/Debug/net5.0/Razor/Views/Restaurants/Edit.cshtml.g.cs
 /Users/bingyuyap/github/DotnetMvc/obj/Debug/net5.0/Razor/Views/Restaurants/Index.cshtml.g.cs
+/Users/bingyuyap/github/DotnetMvc/obj/Debug/net5.0/Razor/Views/Items/Create.cshtml.g.cs
+/Users/bingyuyap/github/DotnetMvc/obj/Debug/net5.0/Razor/Views/Items/Delete.cshtml.g.cs
+/Users/bingyuyap/github/DotnetMvc/obj/Debug/net5.0/Razor/Views/Items/Details.cshtml.g.cs
+/Users/bingyuyap/github/DotnetMvc/obj/Debug/net5.0/Razor/Views/Items/Edit.cshtml.g.cs
+/Users/bingyuyap/github/DotnetMvc/obj/Debug/net5.0/Razor/Views/Items/Index.cshtml.g.cs

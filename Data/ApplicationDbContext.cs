@@ -17,5 +17,6 @@ namespace DotnetMvc.Data
         {
         }
         public DbSet<DotnetMvc.Models.Restaurant> Restaurant { get; set; }
+        public DbSet<DotnetMvc.Models.Item> Item { get; set; }
     }
 }
