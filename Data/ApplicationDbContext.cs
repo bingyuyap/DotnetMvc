@@ -38,7 +38,10 @@ namespace DotnetMvc.Data
             modelBuilder.Entity<OrderItem>()
                 .HasOne(oi => oi.Item)
                 .WithMany(i => i.OrderItems);
-                
+
+            modelBuilder.Entity<OrderItem>()
+                .HasKey(oi => new {oi.OrderId, oi.ItemId});
+
         }
         
         public override int SaveChanges()
@@ -69,5 +72,9 @@ namespace DotnetMvc.Data
                 ((BaseEntity)entity.Entity).UpdatedAt = now;
             }
         }
+
+        public DbSet<DotnetMvc.Models.Order> Order { get; set; }
+
+        public DbSet<DotnetMvc.Models.OrderItem> OrderItem { get; set; }
     }
 }
