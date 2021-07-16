@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DotnetMvc.Data;
 using DotnetMvc.Models;
+using DotnetMvc.ViewModels;
 
 namespace DotnetMvc.Controllers
 {
@@ -22,7 +23,6 @@ namespace DotnetMvc.Controllers
         // GET: Orders
         public async Task<IActionResult> Index()
         {
-            int price = 1;
             return View(await _context.Order.ToListAsync());
         }
 
@@ -34,8 +34,18 @@ namespace DotnetMvc.Controllers
                 return NotFound();
             }
 
-            var order = await _context.Order
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var order = _context.Order
+                .Where(m => m.Id == id)
+                .Select(m => new OrderViewModel
+                {
+                    Id = m.Id,
+                    CreatedAt = m.CreatedAt,
+                    ExpiryDateTime = m.ExpiryDateTime,
+                    UpdatedAt = m.UpdatedAt,
+                    Expired = DateTime.UtcNow > m.ExpiryDateTime
+                }).First();
+                // .Select(Mapper.Map<ViewModel>).ToList();
+  
             if (order == null)
             {
                 return NotFound();
