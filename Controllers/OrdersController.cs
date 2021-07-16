@@ -87,17 +87,17 @@ namespace DotnetMvc.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Id,CreatedAt,UpdatedAt")] Order order)
-        {
-            if (id != order.Id)
-            {
-                return NotFound();
-            }
+        // TODO: Razor view passes in the raw object instead of the actual object in the database
 
+        public async Task<IActionResult> Edit(Guid id)
+        {
+            var order = await _context.Order.FindAsync(id);
             if (ModelState.IsValid)
             {
+                
                 try
                 {
+                    // TODO: Do not update the order item directly, update by taking from the DB first.
                     _context.Update(order);
                     await _context.SaveChangesAsync();
                 }

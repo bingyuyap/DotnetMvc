@@ -92,12 +92,9 @@ namespace DotnetMvc.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Id,Name,Price,RestaurantId")] Item item)
+        public async Task<IActionResult> Edit(Guid id)
         {
-            if (id != item.Id)
-            {
-                return NotFound();
-            }
+            var item = await _context.Item.FindAsync(id);
 
             if (ModelState.IsValid)
             {

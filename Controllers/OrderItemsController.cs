@@ -63,7 +63,6 @@ namespace DotnetMvc.Controllers
         {
             if (ModelState.IsValid)
             {
-                orderItem.OrderId = Guid.NewGuid();
                 _context.Add(orderItem);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -96,13 +95,9 @@ namespace DotnetMvc.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("OrderId,ItemId,Quantity")] OrderItem orderItem)
+        public async Task<IActionResult> Edit(Guid id)
         {
-            if (id != orderItem.OrderId)
-            {
-                return NotFound();
-            }
-
+            var orderItem = await _context.OrderItem.FindAsync(id);
             if (ModelState.IsValid)
             {
                 try
