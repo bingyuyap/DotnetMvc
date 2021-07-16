@@ -22,6 +22,7 @@ namespace DotnetMvc.Controllers
         // GET: Orders
         public async Task<IActionResult> Index()
         {
+            int price = 1;
             return View(await _context.Order.ToListAsync());
         }
 

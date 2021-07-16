@@ -7,7 +7,11 @@ namespace DotnetMvc.Models
     public class Order : BaseEntity
     {
         public Guid Id { get; set; }
+        
+        public DateTime ExpiryDateTime { get; set; }
 
         public ICollection<OrderItem> OrderItems { get; set; }
+
+
     }
 }
