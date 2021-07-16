@@ -23,7 +23,14 @@ namespace DotnetMvc.Controllers
         // GET: Orders
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Order.ToListAsync());
+            return View(await _context.Order.Select(m => new OrderViewModel
+            {
+                Id = m.Id,
+                CreatedAt = m.CreatedAt,
+                ExpiryDateTime = m.ExpiryDateTime,
+                UpdatedAt = m.UpdatedAt,
+                Expired = DateTime.UtcNow > m.ExpiryDateTime
+            }).ToListAsync());
         }
 
         // GET: Orders/Details/5
@@ -65,7 +72,7 @@ namespace DotnetMvc.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,CreatedAt,UpdatedAt")] Order order)
+        public async Task<IActionResult> Create([Bind("Id,CreatedAt,UpdatedAt,ExpiryDateTime")] Order order)
         {
             if (ModelState.IsValid)
             {
@@ -99,7 +106,6 @@ namespace DotnetMvc.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         // TODO: Razor view passes in the raw object instead of the actual object in the database
-
         public async Task<IActionResult> Edit(Guid id)
         {
             var order = await _context.Order.FindAsync(id);

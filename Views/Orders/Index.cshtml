@@ -1,4 +1,4 @@
-@model IEnumerable<DotnetMvc.Models.Order>
+@model IEnumerable<DotnetMvc.ViewModels.OrderViewModel>
 
 @{
     ViewData["Title"] = "Index";
@@ -18,6 +18,12 @@
             <th>
                 @Html.DisplayNameFor(model => model.UpdatedAt)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ExpiryDateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Expired)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -29,6 +35,12 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.UpdatedAt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExpiryDateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Expired)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
