@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DotnetMvc.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210714101925_AddOrderItem")]
+    [Migration("20210715030009_AddOrderItem")]
     partial class AddOrderItem
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -21,4 +21,12 @@
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL.Design" Version="1.1.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Views\OrderItems\Create.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\OrderItems\Delete.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\OrderItems\Details.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\OrderItems\Edit.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\OrderItems\Index.cshtml" />
+  </ItemGroup>
+
 </Project>

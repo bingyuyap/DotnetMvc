@@ -1,8 +1,9 @@
 using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DotnetMvc.Models
 {
-    public class OrderItem
+    public class OrderItem : BaseEntity
     {
         public Guid OrderId { get; set; }
         public Order Order { get; set; }
@@ -12,4 +13,4 @@ namespace DotnetMvc.Models
         
         public int Quantity { get; set; }
     }
-}
+}  
