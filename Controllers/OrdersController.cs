@@ -29,7 +29,7 @@ namespace DotnetMvc.Controllers
                 CreatedAt = m.CreatedAt,
                 ExpiryDateTime = m.ExpiryDateTime,
                 UpdatedAt = m.UpdatedAt,
-                Expired = DateTime.UtcNow > m.ExpiryDateTime
+                Expired = DateTime.UtcNow > m.ExpiryDateTime,
             }).ToListAsync());
         }
 
@@ -49,13 +49,14 @@ namespace DotnetMvc.Controllers
                     CreatedAt = m.CreatedAt,
                     ExpiryDateTime = m.ExpiryDateTime,
                     UpdatedAt = m.UpdatedAt,
-                    Expired = DateTime.UtcNow > m.ExpiryDateTime
+                    Expired = DateTime.UtcNow > m.ExpiryDateTime,
+                    Items = m.OrderItems.Select(oi => oi.Item).ToList()
                 }).First();
                 // .Select(Mapper.Map<ViewModel>).ToList();
   
             if (order == null)
             {
-                return NotFound();
+                return NotFound();  
             }
 
             return View(order);

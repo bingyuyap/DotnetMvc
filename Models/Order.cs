@@ -11,7 +11,5 @@ namespace DotnetMvc.Models
         public DateTime ExpiryDateTime { get; set; }
 
         public ICollection<OrderItem> OrderItems { get; set; }
-
-
     }
 }

@@ -1,4 +1,7 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using DotnetMvc.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DotnetMvc.ViewModels
@@ -24,5 +27,9 @@ namespace DotnetMvc.ViewModels
         public DateTime UpdatedAt { get; set; }
         
         public bool Expired { get; set; }
+        
+        public ICollection<Item> Items { get; set; }
+        
+        
     }
 }
