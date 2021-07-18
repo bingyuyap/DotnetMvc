@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -14,10 +15,18 @@ namespace DotnetMvc.Controllers
     public class OrdersController : Controller
     {
         private readonly ApplicationDbContext _context;
+        
+        // Create private field to store mapper object
+        private readonly IMapper _mapper;
 
-        public OrdersController(ApplicationDbContext context)
+        // public OrdersController(ApplicationDbContext context)
+        // {
+        //     _context = context;
+        // }
+
+        public OrdersController(IMapper mapper)
         {
-            _context = context;
+            _mapper = mapper;
         }
 
         // GET: Orders
