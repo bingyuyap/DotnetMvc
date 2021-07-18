@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Markup;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -24,14 +25,16 @@ namespace DotnetMvc.Controllers
         //     _context = context;
         // }
 
-        public OrdersController(IMapper mapper)
+        public OrdersController(ApplicationDbContext context, IMapper mapper)
         {
+            _context = context;
             _mapper = mapper;
         }
 
         // GET: Orders
         public async Task<IActionResult> Index()
         {
+
             return View(await _context.Order.Select(m => new OrderViewModel
             {
                 Id = m.Id,
@@ -39,6 +42,7 @@ namespace DotnetMvc.Controllers
                 ExpiryDateTime = m.ExpiryDateTime,
                 UpdatedAt = m.UpdatedAt,
                 Expired = DateTime.UtcNow > m.ExpiryDateTime,
+                Items = null
             }).ToListAsync());
         }
 
@@ -50,25 +54,31 @@ namespace DotnetMvc.Controllers
                 return NotFound();
             }
 
-            var order = _context.Order
-                .Where(m => m.Id == id)
-                .Select(m => new OrderViewModel
-                {
-                    Id = m.Id,
-                    CreatedAt = m.CreatedAt,
-                    ExpiryDateTime = m.ExpiryDateTime,
-                    UpdatedAt = m.UpdatedAt,
-                    Expired = DateTime.UtcNow > m.ExpiryDateTime,
-                    Items = m.OrderItems.Select(oi => oi.Item).ToList()
-                }).First();
-                // .Select(Mapper.Map<ViewModel>).ToList();
-  
+            // var order = _context.Order
+            //     .Where(m => m.Id == id)
+            //     .Select(m => new OrderViewModel
+            //     {
+            //         Id = m.Id,
+            //         CreatedAt = m.CreatedAt,
+            //         ExpiryDateTime = m.ExpiryDateTime,
+            //         UpdatedAt = m.UpdatedAt,
+            //         Expired = DateTime.UtcNow > m.ExpiryDateTime,
+            //         Items = m.OrderItems.Select(oi => oi.Item).ToList()
+            //     }).First();
+
+            var order = _context.Order.Where(o => o.Id == id)
+                .Include(o => o.OrderItems)
+                .ThenInclude(orderItem => orderItem.Item)
+                .First();
+            
             if (order == null)
             {
                 return NotFound();  
             }
 
-            return View(order);
+            var return_order = _mapper.Map<OrderViewModel>(order);
+
+            return View(return_order);
         }
 
         // GET: Orders/Create

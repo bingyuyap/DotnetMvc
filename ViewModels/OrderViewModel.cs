@@ -1,23 +1,20 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using AutoMapper;
+using AutoMapper.Configuration.Annotations;
 using DotnetMvc.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DotnetMvc.ViewModels
 {
+    [AutoMap(typeof(Order))]
     public class OrderViewModel
     {
         public OrderViewModel()
         {
         }
-        
-        // public OrderViewModel(Guid id, DateTime expiryDateTime, DateTime createdAt, DateTime updatedAt, bool expired)
-        // {
-        //     Id = id;
-        //     expiryDateTime = 
-        // }
-        
+
         public Guid Id { get; set; }
         
         public DateTime ExpiryDateTime { get; set; }
